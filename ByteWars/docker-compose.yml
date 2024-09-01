@@ -15,10 +15,10 @@ services:
     deploy:
       resources:
         limits:
-          memory: 2g
+          memory: 10g
           cpus: '0.5'
         reservations:
-          memory: 1g
+          memory: 10g
           cpus: '0.25'
 
   client:
