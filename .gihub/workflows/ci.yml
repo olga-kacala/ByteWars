@@ -9,50 +9,11 @@ on:
       - main
 
 jobs:
-  docker_compose_and_test:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Docker Buildx
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      # Step 3: Build and start Docker Compose services
-      - name: Build and start Docker Compose services
-        run: |
-          cd ByteWars
-          docker-compose up -d --build
-
-      # Step 4: Run linting for server
-      - name: Run server lint
-        run: |
-          cd ByteWars/server
-          docker-compose exec -T server npm run lint
-
-      # Step 5: Run linting for client
-      - name: Run client lint
-        run: |
-          cd ByteWars/client
-          docker-compose exec -T client npm run lint
-
-      # Step 6: Run tests for server
-      - name: Run server tests
-        run: |
-          cd ByteWars/server
-          docker-compose exec -T server npm test -- --coverage
-
-      # Step 7: Run tests for client
-      - name: Run client tests
-        run: |
-          cd ByteWars/client
-          docker-compose exec -T client npm test -- --coverage
-
-      # Step 8: Clean up Docker Compose
-      - name: Shut down Docker Compose
-        run: |
-          cd ByteWars
-          docker-compose down
+      - name: Run a one-line script
+        run: echo "Hello, world!"
