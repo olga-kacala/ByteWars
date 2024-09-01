@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "lint": "eslint .", 
     "start": "npm run server",
     "server": "node server.js",
     "client": "npm start --prefix /app/client"
@@ -22,5 +23,8 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "eslint": "^9.9.1"
   }
 }
