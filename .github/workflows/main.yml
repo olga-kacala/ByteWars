@@ -43,13 +43,13 @@ jobs:
       - name: Run server lint
         run: |
           cd ByteWars/server
-          docker-compose exec -T server npm run lint
+          docker-compose exec -T server npx eslint .
 
       # Step 6: Run client lint
       - name: Run client lint
         run: |
           cd ByteWars/client
-          docker-compose exec -T client npm run lint
+          docker-compose exec -T client npx eslint .
 
       # Step 7: Run server tests
       - name: Run server tests
