@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint .", 
+    "lint": "eslint .",
     "start": "npm run server",
     "server": "node server.js",
     "client": "npm start --prefix /app/client"
@@ -25,6 +25,8 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
-    "eslint": "^9.9.1"
+    "eslint": "^9.9.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.2.1"
   }
 }
