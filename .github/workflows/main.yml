@@ -7,16 +7,15 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   hello_world:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Print Hello World
       - name: Print Hello World
         run: echo "Hello, World!"
