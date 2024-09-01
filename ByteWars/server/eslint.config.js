@@ -1,20 +1,14 @@
-module.exports = {
-  // Specify parser options
-  languageOptions: {
-    parserOptions: {
-      ecmaVersion: 2020,
-      sourceType: 'module',
+const globals = require("globals");
+const pluginJs = require("@eslint/js");
+
+module.exports = [
+  {
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+      },
     },
   },
-  
-  // Specify rules
-  rules: {
-
-  },
-
-  // Plugins can be specified here
-  plugins: {
-  
-    node: require('eslint-plugin-node'),
-  },
-};
+  pluginJs.configs.recommended,
+];
