@@ -1,29 +1,31 @@
-/** @type {import('eslint').ESLint.FlatConfig} */
-const config = [
-    {
-      languageOptions: {
-        parserOptions: {
-          ecmaVersion: 2021,
-          sourceType: 'module',
-        },
-      },
-      plugins: {
-        prettier: require('eslint-plugin-prettier'),
-        node: require('eslint-plugin-node'),
-      },
-      rules: {
-        // Add your custom rules here if needed
-      },
-      ignorePatterns: ['node_modules/'],
+module.exports = {
+  // Specify parser options
+  languageOptions: {
+    parserOptions: {
+      ecmaVersion: 2020,
+      sourceType: 'module',
     },
-    {
-      // Apply rules or configurations for specific file types
-      files: ['*.js', '*.jsx'],
-      rules: {
-        // Custom rules for JavaScript and JSX files
-      },
-    },
-  ];
-  
-  module.exports = config;
-  
+  },
+  // Extend configurations
+  extends: [
+    'eslint:recommended',
+    'plugin:prettier/recommended', // or any other configs you use
+  ],
+  // Specify rules
+  rules: {
+    'no-console': 'warn',
+    'prettier/prettier': 'error',
+    // Add or modify rules as needed
+  },
+  // Specify files to ignore
+  ignorePatterns: [
+    'node_modules/**/*',
+    'dist/**/*',
+    'build/**/*',
+  ],
+  // Plugins can be specified here
+  plugins: {
+    prettier: require('eslint-plugin-prettier'),
+    node: require('eslint-plugin-node'),
+  },
+};
