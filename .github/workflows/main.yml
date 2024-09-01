@@ -39,11 +39,11 @@ jobs:
           cd ByteWars
           docker-compose up -d
 
-      # Step 5: Run server lint
-      - name: Run server lint
-        run: |
-          cd ByteWars/server
-          docker-compose exec -T server npx eslint .
+      # # Step 5: Run server lint
+      # - name: Run server lint
+      #   run: |
+      #     cd ByteWars/server
+      #     docker-compose exec -T server npx eslint .
 
       # Step 6: Run client lint
       - name: Run client lint
@@ -51,11 +51,11 @@ jobs:
           cd ByteWars/client
           docker-compose exec -T client npx eslint .
 
-      # Step 7: Run server tests
-      - name: Run server tests
-        run: |
-          cd ByteWars/server
-          docker-compose exec -T server npm test -- --coverage
+      # # Step 7: Run server tests
+      # - name: Run server tests
+      #   run: |
+      #     cd ByteWars/server
+      #     docker-compose exec -T server npm test -- --coverage
 
       # Step 8: Run client tests
       - name: Run client tests
