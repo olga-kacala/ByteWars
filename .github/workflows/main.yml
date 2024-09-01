@@ -18,48 +18,49 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Docker
-      - name: Set up Docker
-        uses: docker/setup-docker@v1
-
-      # Step 3: Install Docker Compose
-      - name: Install Docker Compose
+      # Step 2: Install Docker and Docker Compose
+      - name: Install Docker and Docker Compose
         run: |
+          # Install Docker
+          sudo apt-get update
+          sudo apt-get install -y docker.io
+
+          # Install Docker Compose
           sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep tag_name | cut -d\" -f4)/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
           docker-compose --version
 
-      # Step 4: Build and start Docker Compose services
+      # Step 3: Build and start Docker Compose services
       - name: Build and start Docker Compose services
         run: |
           cd ByteWars
           docker-compose up -d
 
-      # Step 5: Run linting for server
+      # Step 4: Run linting for server
       - name: Run server lint
         run: |
           cd ByteWars/server
           docker-compose exec -T server npm run lint
 
-      # Step 6: Run linting for client
+      # Step 5: Run linting for client
       - name: Run client lint
         run: |
           cd ByteWars/client
           docker-compose exec -T client npm run lint
 
-      # Step 7: Run tests for server
+      # Step 6: Run tests for server
       - name: Run server tests
         run: |
           cd ByteWars/server
           docker-compose exec -T server npm test -- --coverage
 
-      # Step 8: Run tests for client
+      # Step 7: Run tests for client
       - name: Run client tests
         run: |
           cd ByteWars/client
           docker-compose exec -T client npm test -- --coverage
 
-      # Step 9: Clean up Docker Compose
+      # Step 8: Clean up Docker Compose
       - name: Shut down Docker Compose
         run: |
           cd ByteWars
