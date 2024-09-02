@@ -1,6 +1,7 @@
 const globals = require("globals");
 const pluginJs = require("@eslint/js");
 
+
 module.exports = [
   {
     languageOptions: {
