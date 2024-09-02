@@ -39,11 +39,17 @@ jobs:
           cd ByteWars
           docker-compose up -d
 
-      # Step 5: Run server lint
+      # Step 5: Install server dependencies
+      - name: Install server dependencies
+        run: |
+          cd ByteWars/server
+          npm install
+
+      # Step 6: Run server lint
       - name: Run server lint
         run: |
           cd ByteWars/server
-          npm run lint .
+          npx eslint .
 
       # Step 6: Run client lint
       - name: Run client lint
