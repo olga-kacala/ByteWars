@@ -51,25 +51,31 @@ jobs:
           cd ByteWars/server
           npx eslint .
 
-      # Step 7: Run client lint
+      # Step 7: Install client dependencies
+      - name: Install client dependencies
+        run: |
+          cd ByteWars/client
+          npm install
+
+      # Step 8: Run client lint
       - name: Run client lint
         run: |
           cd ByteWars/client
           npx eslint .
 
-      # Step 8: Run server tests
+      # Step 9: Run server tests
       - name: Run server tests
         run: |
           cd ByteWars/server
           npm test -- --coverage
 
-      # Step 9: Run client tests
+      # Step 10: Run client tests
       - name: Run client tests
         run: |
           cd ByteWars/client
           npm test -- --coverage
 
-      # Step 10: Clean up Docker Compose
+      # Step 11: Clean up Docker Compose
       - name: Shut down Docker Compose
         run: |
           cd ByteWars
