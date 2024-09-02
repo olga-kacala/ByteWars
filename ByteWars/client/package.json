@@ -38,14 +38,17 @@
     ]
   },
   "proxy": "http://localhost:3000",
+  "type": "module",
   "devDependencies": {
     "@babel/cli": "^7.25.6",
     "@babel/core": "^7.25.2",
     "@babel/eslint-parser": "^7.25.1",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-react": "^7.24.7",
-    "@eslint/js": "^8.57.0",
-    "eslint": "^8.57.0",
+    "@eslint/js": "^9.9.1",  
+    "eslint": "^9.9.1",     
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.9.0"
   }
 }

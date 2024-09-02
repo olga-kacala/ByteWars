@@ -1,23 +1,15 @@
-const globals = require("globals");
-const pluginJs = require("@eslint/js");
+
+import babelParser from "@babel/eslint-parser";
 
 
-module.exports = [
-  {
-    languageOptions: {
-      parser: "@babel/eslint-parser",
-      parserOptions: {
-        requireConfigFile: false,
-        babelOptions: {
-          presets: ["@babel/preset-react"],
-        },
-      },
-      globals: {
-        ...globals.node,
-        ...globals.jest,
-      },
+
+export default [
+    {
+        languageOptions: {
+            parser: babelParser, 
+          
+       
     },
-   
-  },
-  pluginJs.configs.recommended,
+}
+
 ];
