@@ -38,7 +38,7 @@
     ]
   },
   "proxy": "http://localhost:3000",
-  "type": "module",
+ 
   "devDependencies": {
     "@babel/cli": "^7.25.6",
     "@babel/core": "^7.25.2",
