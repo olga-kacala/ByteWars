@@ -43,7 +43,7 @@ jobs:
       - name: Run server lint
         run: |
           cd ByteWars/server
-          server npm run lint .
+          npm run lint .
 
       # Step 6: Run client lint
       - name: Run client lint
