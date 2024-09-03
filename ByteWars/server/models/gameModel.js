@@ -28,7 +28,7 @@ class Game {
           this.attackHP,
           this.totalAttack,
         ],
-         (err)=> {
+        (err) => {
           if (err) return reject(err);
           resolve({ gameId: this.gameId });
         }
@@ -72,7 +72,7 @@ class Game {
     return new Promise((resolve, reject) => {
       const query =
         "UPDATE games SET totalAttack = ?, status = ? WHERE gameId = ?";
-      db.run(query, [totalAttack, status, gameId], (err)=> {
+      db.run(query, [totalAttack, status, gameId], (err) => {
         if (err) return reject(err);
         resolve();
       });
@@ -93,7 +93,7 @@ class Game {
   static async deleteAll() {
     return new Promise((resolve, reject) => {
       const query = "DELETE FROM games";
-      db.run(query, (err)=> {
+      db.run(query, (err) => {
         if (err) return reject(err);
         resolve(this.changes);
       });

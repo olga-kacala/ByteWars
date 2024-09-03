@@ -40,7 +40,7 @@ describe("Server Endpoints", () => {
         .post("/api/v1/register")
         .send({ username: "newUser", password: "newPassword" });
 
-      expect(response.status).toBe(200);
+      expect(response.status).toBe(201);
       expect(response.body.message).toBe("User registered successfully");
     });
   });
@@ -107,7 +107,7 @@ describe("Server Endpoints", () => {
         .send({ attackHP: 20 });
 
       expect(response.status).toBe(400);
-      expect(response.body.message).toBe("Game ID and HP is required");
+      expect(response.body.message).toBe("Game ID and HP are required");
     });
 
     it("should return 200 and updated game status for valid attack", async () => {
