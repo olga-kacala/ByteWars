@@ -5,8 +5,8 @@ const bodyParser = require("body-parser");
 const jwt = require("./utils/jwt");
 const path = require("path");
 const cors = require("cors");
-const User = require("./classes/User");
-const Game = require("./classes/Game");
+const User = require("./models/userModel");
+const Game = require("./models/gameModel");
 
 const app = express();
 const PORT = process.env.PORT;

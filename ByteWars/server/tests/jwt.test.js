@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const jwt = require('./jwt');
+const jwt = require('../utils/jwt');
 
 describe('JWT Module', () => {
   const secret = 'supersecretkey';

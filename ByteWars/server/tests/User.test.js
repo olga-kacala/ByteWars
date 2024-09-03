@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const User = require("./User");
+const User = require("../models/userModel");
 const db = require("../db/database");
 
 jest.mock("../db/database");

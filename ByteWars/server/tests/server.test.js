@@ -1,6 +1,6 @@
 const request = require("supertest");
-const app = require("./server"); 
-const User = require("./classes/User");
+const app = require("../server"); 
+const User = require("../models/userModel");
 
 describe("Server Endpoints", () => {
   let server;

@@ -1,4 +1,4 @@
-const Game = require('./Game');
+const Game = require('../models/gameModel');
 const db = require('../db/database');
 
 jest.mock('../db/database'); 
