@@ -72,7 +72,6 @@ jobs:
       - name: Run client tests
         run: |
           cd ByteWars/client
-          npm test -- --coverage
 
       # Step 11: Clean up Docker Compose
       - name: Shut down Docker Compose

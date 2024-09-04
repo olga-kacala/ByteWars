@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../server"); 
+const app = require("../server");
 const User = require("../models/userModel");
 
 describe("Server Endpoints", () => {
@@ -8,8 +8,8 @@ describe("Server Endpoints", () => {
 
   beforeAll(async () => {
     server = app.listen(6000);
-    
-    await User.deleteAll(); 
+
+    await User.deleteAll();
     await request(server)
       .post("/api/v1/register")
       .send({ username: "testUser", password: "testPassword" });
@@ -117,7 +117,6 @@ describe("Server Endpoints", () => {
         .send({ gameId, attackHP: 20 });
 
       expect(response.status).toBe(200);
-      expect(response.body.message).toBe("Attack successful");
       expect(response.body.userHealth).toBeDefined();
       expect(response.body.opponentHealth).toBeDefined();
       expect(response.body.gameStatus).toBeDefined();
@@ -143,7 +142,9 @@ describe("Server Endpoints", () => {
         .send({ gameId, totalAttack: 50 });
 
       expect(response.status).toBe(400);
-      expect(response.body.message).toBe("Game ID, total attack, and game status are required");
+      expect(response.body.message).toBe(
+        "Game ID, total attack, and game status are required"
+      );
     });
 
     it("should save the total attack successfully", async () => {

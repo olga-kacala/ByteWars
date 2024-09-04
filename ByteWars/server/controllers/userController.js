@@ -1,49 +1,37 @@
-const User = require("../models/userModel");
-const jwt = require("../utils/jwt");
-const secret = process.env.JWT_SECRET;
+const userService = require("../services/userService");
+const { ValidationError, AuthenticationError } = require("../utils/errors");
 
 const register = async (req, res) => {
-  const { username, password } = req.body;
-  if (!username || !password) {
-    return res.status(400).json({ message: "Username and password are required" });
-  }
   try {
-    const existingUser = await User.findByUsername(username);
-    if (existingUser) {
-      return res.status(400).json({ message: "Username already exists" });
-    }
-    const newUser = new User(username, password);
-    await newUser.save();
+    const { username, password } = req.body;
+    await userService.register(username, password);
     res.status(201).json({ message: "User registered successfully" });
   } catch (err) {
-    res.status(500).json({ message: "User registration failed", error: err.message });
+    if (err instanceof ValidationError) {
+      res.status(err.statusCode).json({ message: err.message });
+    } else {
+      res.status(500).json({ message: "User registration failed", error: err.message });
+    }
   }
 };
 
 const login = async (req, res) => {
-  const { username, password } = req.body;
-  if (!username || !password) {
-    return res.status(400).json({ message: "Username and password are required" });
-  }
   try {
-    const user = await User.findByUsername(username);
-    if (!user) {
-      return res.status(401).json({ message: "Invalid username or password" });
-    }
-    const isMatch = await User.comparePassword(password, user.password);
-    if (!isMatch) {
-      return res.status(401).json({ message: "Invalid username or password" });
-    }
-    const token = jwt.sign({ userId: user.id }, secret);
-    res.json({ token });
+    const { username, password } = req.body;
+    const result = await userService.login(username, password);
+    res.json(result);
   } catch (err) {
-    res.status(500).json({ message: "User login failed", error: err.message });
+    if (err instanceof ValidationError || err instanceof AuthenticationError) {
+      res.status(err.statusCode).json({ message: err.message });
+    } else {
+      res.status(500).json({ message: "User login failed", error: err.message });
+    }
   }
 };
 
 const deleteUsers = async (req, res) => {
   try {
-    const deletedRows = await User.deleteAll();
+    const deletedRows = await userService.deleteUsers();
     res.json({ message: `${deletedRows} users deleted successfully` });
   } catch (err) {
     res.status(500).json({ message: "Failed to delete users", error: err.message });
